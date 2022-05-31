@@ -24,14 +24,16 @@ let wsIndex = 0
 let maxWs = 100
 let proxyCounts = {}
 
+process.on("uncaughtException",function(e) {
+    console.log('出错了:' + e.message)
+    proxyIndex++
+    setTimeout(() => {
+        init()
+    }, 2000);
+})
+
 async function init() {
-    process.on("uncaughtException",function(e) {
-        console.log('出错了:' + e.message)
-        proxyIndex++
-        setTimeout(() => {
-            init()
-        }, 10000);
-    })
+    
     while(wsIndex < maxWs) {
         console.log('wsIndex:' + wsIndex)
         if(wsIndex > 0 && wsIndex % 100 == 0) {
