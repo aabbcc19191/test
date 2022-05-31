@@ -3,7 +3,6 @@ import WebSocket from 'ws';
 
 let wsIndex = 0
 let maxWs = 100
-// github.com-aabbcc19191:aabbcc19191/test.git
 
 process.on("uncaughtException",function(e) {
     console.log('出错了')
@@ -34,7 +33,7 @@ function openConnection(i) {
     return new Promise((resolve) => {
         try {
             // WebSocket地址
-            let endpoint = 'ws://t1.tedet.cn/websocket/75/670777/75-670777';
+            let endpoint = 'ws://t1.tedet.cn/websocket/76/671082/76-671082';
 
             let ws = new WebSocket(endpoint, {timeout: 2000});
             let sendMessageInterval = null
