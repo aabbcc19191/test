@@ -2,7 +2,7 @@ import WebSocket from 'ws';
 
 
 let wsIndex = 0
-let maxWs = 1
+let maxWs = 100
 // github.com-aabbcc19191:aabbcc19191/test.git
 
 
