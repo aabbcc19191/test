@@ -7,7 +7,7 @@ let maxWs = 100
 process.on("uncaughtException",function(e) {
     console.log('出错了')
     console.log(e.message)
-    wsIndex--
+    // wsIndex--
     setTimeout(() => {
         init()
     }, 2000);
@@ -96,10 +96,9 @@ function openConnection(i) {
 
             ws.on('close', function message(data) {
                 console.log('链接关闭:' + i);
-                // if(sendMessageInterval != null) {
-                //     clearInterval(sendMessageInterval)
-                // }
-                openConnection(i)
+                setTimeout(async () => {
+                    await openConnection(i)
+                }, 2000);
             });
         } catch(e) {
             resolve()
