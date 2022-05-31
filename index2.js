@@ -22,6 +22,7 @@ async function init() {
             wsIndex++;
         } catch(e) {
             console.log(e)
+            await openConnection(wsIndex)
         } 
     }
 }
@@ -32,7 +33,7 @@ function openConnection(i) {
             // WebSocket地址
             let endpoint = 'ws://t1.tedet.cn/websocket/75/670777/75-670777';
 
-            let ws = new WebSocket(endpoint);
+            let ws = new WebSocket(endpoint, {timeout: 2000});
             ws.on('open', function open() {
                 console.log(i + ' 链接成功')
                 // ws.send("");
