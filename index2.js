@@ -7,6 +7,7 @@ let maxWs = 100
 process.on("uncaughtException",function(e) {
     console.log('出错了')
     console.log(e.message)
+    wsIndex--
     setTimeout(() => {
         init()
     }, 2000);
