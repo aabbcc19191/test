@@ -5,15 +5,16 @@ let wsIndex = 0
 let maxWs = 100
 // github.com-aabbcc19191:aabbcc19191/test.git
 
+process.on("uncaughtException",function(e) {
+    console.log('出错了')
+    console.log(e.message)
+    setTimeout(() => {
+        init()
+    }, 2000);
+})
 
 async function init() {
-    process.on("uncaughtException",function(e) {
-        console.log('出错了')
-        console.log(e.message)
-        setTimeout(() => {
-            init()
-        }, 2000);
-    })
+    
     while(wsIndex < maxWs) {
         console.log('wsIndex:' + wsIndex)
         
