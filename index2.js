@@ -11,8 +11,8 @@ async function init() {
         console.log('出错了')
         console.log(e.message)
         setTimeout(() => {
-        }, 10000);
-        init()
+            init()
+        }, 2000);
     })
     while(wsIndex < maxWs) {
         console.log('wsIndex:' + wsIndex)
@@ -22,7 +22,9 @@ async function init() {
             wsIndex++;
         } catch(e) {
             console.log(e)
-            await openConnection(wsIndex)
+            setTimeout(async () => {
+                await openConnection(wsIndex)
+            }, 2000);
         } 
     }
 }

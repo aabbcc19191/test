@@ -5,11 +5,11 @@ import { SocksProxyAgent } from 'socks-proxy-agent';
 let proxyList = []
 let proxyIndex = 0
 proxyList.push("127.0.0.1:8119")
-proxyList.push("127.0.0.1:1334")
-proxyList.push("127.0.0.1:1335")
-proxyList.push("127.0.0.1:1336")
-proxyList.push("127.0.0.1:1337")
-proxyList.push("127.0.0.1:1338")
+// proxyList.push("127.0.0.1:1334")
+// proxyList.push("127.0.0.1:1335")
+// proxyList.push("127.0.0.1:1336")
+// proxyList.push("127.0.0.1:1337")
+// proxyList.push("127.0.0.1:1338")
 // proxyList.push("218.205.185.25:7302")
 // proxyList.push("122.193.10.184:7302")
 // proxyList.push("111.33.26.171:7302")
@@ -21,17 +21,16 @@ proxyList.push("127.0.0.1:1338")
 // proxyList.push("60.12.215.23:7302")
 // proxyList.push("1.180.49.222:7302")
 let wsIndex = 0
-let maxWs = 200
+let maxWs = 100
 let proxyCounts = {}
 
 async function init() {
     process.on("uncaughtException",function(e) {
-        console.log('出错了')
-        console.log(e.message)
+        console.log('出错了:' + e.message)
         proxyIndex++
         setTimeout(() => {
+            init()
         }, 10000);
-        init()
     })
     while(wsIndex < maxWs) {
         console.log('wsIndex:' + wsIndex)
