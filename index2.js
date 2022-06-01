@@ -1,8 +1,18 @@
 import WebSocket from 'ws';
+import fs from 'fs'
+import { resolve } from 'path'
 
+const wsUrlFile = resolve('./') + '/index2_url.txt'
+let wsURL = "ws://t1.tedet.cn/websocket/76/671082/76-671082"
+// 判断地址文件是否存在，如果是，就使用地址文件
+if(fs.existsSync(wsUrlFile)) {
+    wsURL = fs.readFileSync(wsUrlFile, 'utf8')
+}
+
+console.log('wsURL:' + wsURL)
 
 let wsIndex = 0
-let maxWs = 100
+let maxWs = 1
 
 process.on("uncaughtException",function(e) {
     console.log('出错了')
@@ -13,7 +23,10 @@ process.on("uncaughtException",function(e) {
     }, 2000);
 })
 
+
+
 async function init() {
+    
     
     while(wsIndex < maxWs) {
         console.log('wsIndex:' + wsIndex)
@@ -34,9 +47,8 @@ function openConnection(i) {
     return new Promise((resolve) => {
         try {
             // WebSocket地址
-            let endpoint = 'ws://t1.tedet.cn/websocket/76/671082/76-671082';
-
-            let ws = new WebSocket(endpoint, {timeout: 2000});
+            // let endpoint = 'ws://t1.tedet.cn/websocket/79/671058/79-671058';
+            let ws = new WebSocket(wsURL, {timeout: 2000});
             let sendMessageInterval = null
 
             ws.on('open', function open() {
