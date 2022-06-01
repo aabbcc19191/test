@@ -12,7 +12,7 @@ if(fs.existsSync(wsUrlFile)) {
 console.log('wsURL:' + wsURL)
 
 let wsIndex = 0
-let maxWs = 1
+let maxWs = 100
 
 process.on("uncaughtException",function(e) {
     console.log('出错了')
