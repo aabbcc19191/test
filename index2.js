@@ -1,8 +1,22 @@
 import WebSocket from 'ws';
+import fs from 'fs'
+import { resolve } from 'path'
 
+const wsUrlFile = resolve('./') + '/index2_url.txt'
+let wsURL = "ws://t1.tedet.cn/websocket/76/671082/76-671082"
+// 判断地址文件是否存在，如果是，就使用地址文件
+if(fs.existsSync(wsUrlFile)) {
+    wsURL = fs.readFileSync(wsUrlFile, 'utf8')
+}
+
+console.log('wsURL:' + wsURL)
 
 let wsIndex = 0
 let maxWs = 100
+let connectionsStatus = []
+for (let i = 0; i < maxWs; i++) {
+    connectionsStatus.push(false)
+}
 
 process.on("uncaughtException",function(e) {
     console.log('出错了')
@@ -13,8 +27,9 @@ process.on("uncaughtException",function(e) {
     }, 2000);
 })
 
+
+
 async function init() {
-    
     while(wsIndex < maxWs) {
         console.log('wsIndex:' + wsIndex)
         
@@ -34,13 +49,13 @@ function openConnection(i) {
     return new Promise((resolve) => {
         try {
             // WebSocket地址
-            let endpoint = 'ws://t1.tedet.cn/websocket/76/671082/76-671082';
-
-            let ws = new WebSocket(endpoint, {timeout: 2000});
+            // let endpoint = 'ws://t1.tedet.cn/websocket/79/671058/79-671058';
+            let ws = new WebSocket(wsURL, {timeout: 2000});
             let sendMessageInterval = null
 
             ws.on('open', function open() {
                 console.log(i + ' 链接成功')
+                connectionsStatus[i] = true
                 // ws.send("");
                 // sendMessageInterval = setInterval(() => {
                 //     ws.send("Lorem ipsum dolor sit amet. Sit expedita voluptatem non sunt ullam et odit inventore aut unde dolorum ut repellendus similique non quae aspernatur quo labore eaque. Ea omnis earum ut eius quod ut debitis ipsum qui voluptas voluptates eos quibusdam deserunt et quia excepturi et voluptatem inventore. Aut galisum harum aut incidunt amet qui quos omnis qui rerum fugiat non incidunt voluptas. Et voluptates minus qui accusamus delectus sit recusandae porro At nesciunt unde. Vel tempora facere rem quia pariatur aut voluptates ipsam? A nisi repellendus sed mollitia unde ut tempore maiores et neque illum eum recusandae tenetur et internos omnis et quis consequatur. Est labore tenetur a voluptas aliquid et omnis laboriosam hic aspernatur doloremque ut molestias sint. Est numquam quisquam est doloribus suscipit est illo esse ab aliquam facilis non iste molestias vel animi Quis quo quis placeat. Rem amet nulla hic eligendi laboriosam ut necessitatibus nisi qui voluptates quasi 33 beatae quia 33 ducimus nihil. In dolorem blanditiis ea dolor nihil eum delectus tempora vel galisum dignissimos a galisum fugiat. Et earum officiis id voluptatibus tenetur qui voluptas magni ea fugiat voluptatem. Vel tempora similique qui fugit ratione qui tempore aperiam qui odit consequatur! Id eligendi culpa cum debitis tempora et odit quia  molestias enim est quaerat tempora id facere explicabo. Qui unde tempora et velit quidem eum voluptate dolores ea nisi autem ea aperiam suscipit eos aperiam nulla. Aut voluptas labore qui placeat molestiae ea ipsum quaerat et odio dolor sed maxime numquam 33 cumque impedit. Vel voluptatem vitae qui omnis labore qui corrupti magnam ut voluptas doloremque. Qui vitae tempore ut voluptatem aspernatur aut autem error et obcaecati maxime. Ut voluptas perferendis sit esse veniam sit consequatur quibusdam non nisi ratione in odit nulla. Et nesciunt assumenda ea voluptas ullam et enim vitae. Et accusantium tenetur et vero quaerat id cupiditate eligendi eos ullam cumque et sunt dolor ad velit totam. Et nemo quae eum quis beatae At sunt eaque ut numquam similique aut galisum iure. Ut tempora adipisci in quidem obcaecati aut natus nostrum? Sit Quis molestiae aut quis minima est velit expedita aut enim nihil aut maxime placeat. Est molestiae commodi quo quia minima ab quidem natus et molestias porro et deleniti omnis. Non dolor nesciunt qui voluptatum commodi eum excepturi libero qui repellat voluptatem et necessitatibus dolorum? In asperiores adipisci ut quia inventore At quae quaerat id obcaecati quae est quidem tempora. At dolores sequi aut dolores consequatur et culpa porro rem similique aspernatur? Vel adipisci quos et ipsa amet et incidunt dolores ut eaque ducimus ad sint ducimus quo illum enim. Et enim rerum sit quia perferendis At sunt recusandae ea soluta delectus. Qui autem minima sit porro quia aut quae nobis 33 voluptas repellat vel doloribus officiis? Nam modi iste qui nulla libero id vero ratione aut saepe harum At vitae neque. Hic facere incidunt id quos dolor est  voluptatibus qui veritatis quia ea perspiciatis excepturi aut quidem voluptatibus et quasi nemo. Eos perspiciatis eveniet eum totam numquam hic dolores nihil 33 autem quaerat. Sed iusto iste hic perferendis sapiente et voluptatibus aliquam. In quam consequuntur ut suscipit eligendi eum omnis dolores aut odio fugiat et modi explicabo in accusantium voluptas. Ad similique ipsam et omnis quos sed molestias quia. "
@@ -96,6 +111,7 @@ function openConnection(i) {
 
             ws.on('close', function message(data) {
                 console.log('链接关闭:' + i);
+                connectionsStatus[i] = false
                 setTimeout(async () => {
                     await openConnection(i)
                 }, 2000);

@@ -21,5 +21,6 @@ yarn-error.log*
 *.sw?
 *.iml
 
-.log
-.out
+*.log
+*.out
+*.txt
