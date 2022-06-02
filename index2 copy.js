@@ -1,9 +1,6 @@
 import WebSocket from 'ws';
 import fs from 'fs'
 import { resolve } from 'path'
-import HttpsProxyAgent from '@ihof/https-proxy-agent-timeout';
-import axios from 'axios';
-
 
 const wsUrlFile = resolve('./') + '/index2_url.txt'
 let wsURL = "ws://t1.tedet.cn/websocket/76/671082/76-671082"
@@ -15,7 +12,7 @@ if(fs.existsSync(wsUrlFile)) {
 console.log('wsURL:' + wsURL)
 
 let wsIndex = 0
-let maxWs = 100
+let maxWs = 1
 let connectionsStatus = []
 for (let i = 0; i < maxWs; i++) {
     connectionsStatus.push(false)
@@ -31,10 +28,6 @@ process.on("uncaughtException",function(e) {
 })
 
 
-async function getRandomIP() {
-    let { data } = await axios.get("http://127.0.0.1:5555/random")
-    return data
-}
 
 async function init() {
     while(wsIndex < maxWs) {
@@ -52,18 +45,12 @@ async function init() {
     }
 }
 
-async function openConnection(i) {
-    let httpProxyUrl = await getRandomIP();
-    console.log(httpProxyUrl)
-    let proxyHost = httpProxyUrl.split(':')[0]
-    let proxyPort = httpProxyUrl.split(':')[1]
-    var httpsAgent = new HttpsProxyAgent({host: proxyHost, port: proxyPort, timeout: 10000});
-    
+function openConnection(i) {
     return new Promise((resolve) => {
         try {
             // WebSocket地址
             // let endpoint = 'ws://t1.tedet.cn/websocket/79/671058/79-671058';
-            let ws = new WebSocket(wsURL, { agent: httpsAgent, timeout: 2000 });
+            let ws = new WebSocket(wsURL, {timeout: 2000});
             let sendMessageInterval = null
 
             ws.on('open', function open() {

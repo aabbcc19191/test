@@ -10,8 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@ihof/https-proxy-agent-timeout": "^5.0.1",
     "axios": "^0.27.2",
     "https-proxy-agent": "^5.0.1",
+    "redis": "^4.1.0",
     "socks-proxy-agent": "^6.2.0",
     "ws": "^8.7.0"
   },
