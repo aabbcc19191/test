@@ -59,7 +59,7 @@ async function openConnection(i) {
         let proxyHost = httpProxyUrl.split(':')[0]
         let proxyPort = httpProxyUrl.split(':')[1]
         var httpsAgent = new HttpsProxyAgent({host: proxyHost, port: proxyPort, timeout: 10000});
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             try {
                 
                 // WebSocket地址
@@ -131,7 +131,7 @@ async function openConnection(i) {
                     }, 2000);
                 });
             } catch(e) {
-                resolve()
+                reject()
             }
         });
     } catch (error) {
