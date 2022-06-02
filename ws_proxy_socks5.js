@@ -19,7 +19,7 @@ var proxy = 'socks://' + proxyList[proxyList.length - 1];
 console.log('using proxy server %j', proxy);
 
 // WebSocket endpoint for the proxy to connect to
-var endpoint = 'ws://t1.tedet.cn/websocket/75/670777/75-670777';
+var endpoint = 'ws://t1.tedet.cn/websocket/78/670945/78-670945';
 console.log('attempting to connect to WebSocket %j', endpoint);
 
 // create an instance of the `SocksProxyAgent` class with the proxy server information
