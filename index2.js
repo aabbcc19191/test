@@ -15,7 +15,7 @@ if(fs.existsSync(wsUrlFile)) {
 console.log('wsURL:' + wsURL)
 
 let wsIndex = 0
-let maxWs = 300
+let maxWs = 25
 let connectionsStatus = []
 for (let i = 0; i < maxWs; i++) {
     connectionsStatus.push(false)
