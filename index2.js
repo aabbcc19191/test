@@ -54,17 +54,18 @@ async function init() {
 
 async function openConnection(i) {
     try {
-        let httpProxyUrl = await getRandomIP();
-        console.log(i + ":" + httpProxyUrl)
-        let proxyHost = httpProxyUrl.split(':')[0]
-        let proxyPort = httpProxyUrl.split(':')[1]
-        var httpsAgent = new HttpsProxyAgent({host: proxyHost, port: proxyPort, timeout: 10000});
+        // let httpProxyUrl = await getRandomIP();
+        // console.log(i + ":" + httpProxyUrl)
+        // let proxyHost = httpProxyUrl.split(':')[0]
+        // let proxyPort = httpProxyUrl.split(':')[1]
+        // var httpsAgent = new HttpsProxyAgent({host: proxyHost, port: proxyPort, timeout: 10000});
         return new Promise((resolve, reject) => {
             try {
                 
                 // WebSocket地址
                 // let endpoint = 'ws://t1.tedet.cn/websocket/79/671058/79-671058';
-                let ws = new WebSocket(wsURL, { agent: httpsAgent, timeout: 2000 });
+                // let ws = new WebSocket(wsURL, { agent: httpsAgent, timeout: 2000 });
+                let ws = new WebSocket(wsURL, { timeout: 2000 });
                 let sendMessageInterval = null
     
                 ws.on('open', function open() {
