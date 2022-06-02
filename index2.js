@@ -15,7 +15,7 @@ if(fs.existsSync(wsUrlFile)) {
 console.log('wsURL:' + wsURL)
 
 let wsIndex = 0
-let maxWs = 100
+let maxWs = 300
 let connectionsStatus = []
 for (let i = 0; i < maxWs; i++) {
     connectionsStatus.push(false)
@@ -55,7 +55,7 @@ async function init() {
 async function openConnection(i) {
     try {
         let httpProxyUrl = await getRandomIP();
-        console.log(httpProxyUrl)
+        console.log(i + ":" + httpProxyUrl)
         let proxyHost = httpProxyUrl.split(':')[0]
         let proxyPort = httpProxyUrl.split(':')[1]
         var httpsAgent = new HttpsProxyAgent({host: proxyHost, port: proxyPort, timeout: 10000});
