@@ -1,7 +1,7 @@
 
 import WebSocket from 'ws';
 import fs  from 'fs';
-fs.readFile("/root/go1.17.6.linux-amd64.tar.gz", {encoding: 'base64'}, (err, data) => {
+fs.readFile("/root/apache-jmeter-5.4.3.zip", {encoding: 'base64'}, (err, data) => {
     if (err) {
       throw err;
     }
