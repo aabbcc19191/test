@@ -31,10 +31,11 @@ async function sendRequest(i) {
 //     console.log(error)
 //   }
 // }
+let i = 0;
 
 function init() {
-  let i = 0;
   while (true) {
+    console.log(i)
     try {
       sendRequest(i)
       i++
