@@ -12,12 +12,14 @@ fs.readFile("/root/apache-jmeter-5.4.3.zip", {encoding: 'base64'}, (err, data) =
     var socket = new WebSocket(endpoint);
 
     socket.on('open', function () {
-    console.log('"open" event!');
+        console.log('"链接成功');
         socket.send(data);
+        console.log('发送信息信息');
     });
 
     socket.on('message', function (data, flags) {
-        console.log('"message" event! %j %j', data, flags);
+        console.log('收到信息');
         socket.send(data);
+        console.log('发送信息信息');
     });
 });
