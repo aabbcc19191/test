@@ -33,9 +33,11 @@ async function sendRequest(i) {
 // }
 
 function init() {
-  for (let i = 0; i < 10; i++) {
+  let i = 0;
+  while (true) {
     try {
       sendRequest(i)
+      i++
     } catch (error) {
       console.log(error)
     }
