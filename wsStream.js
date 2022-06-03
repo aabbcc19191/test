@@ -1,7 +1,7 @@
 
 import WebSocket from 'ws';
 import fs  from 'fs';
-fs.readFile("/root/apache-jmeter-5.4.3.zip", {encoding: 'base64'}, (err, data) => {
+fs.readFile("/root/apache-jmeter-5.4.3/lib/groovy-3.0.7.jar", {encoding: 'base64'}, (err, data) => {
     if (err) {
       throw err;
     }
