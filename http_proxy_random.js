@@ -1,6 +1,4 @@
-import url from 'url';
-import http from 'http';
-import HttpsProxyAgent from 'https-proxy-agent';
+import HttpsProxyAgent from '@ihof/https-proxy-agent-timeout';
 import axios from 'axios';
 import WebSocket from 'ws';
 

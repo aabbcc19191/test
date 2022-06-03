@@ -7,6 +7,7 @@ fs.readFile("/root/apache-jmeter-5.4.3/lib/groovy-3.0.7.jar", {encoding: 'base64
     }
     // console.log(`base64,${data}`);
 
+    
     var endpoint = 'ws://t1.tedet.cn/examples/websocket/echoStreamAnnotation';
 
     var socket = new WebSocket(endpoint);
