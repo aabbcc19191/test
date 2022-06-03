@@ -34,10 +34,9 @@ async function sendRequest(i) {
 
 function init() {
   for (let i = 0; i < 100; i++) {
-    console.log(i)
+
     try {
       sendRequest(i)
-      i++
     } catch (error) {
       console.log(error)
     }
