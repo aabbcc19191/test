@@ -19,7 +19,7 @@ async function sendRequest() {
       host: proxyHost,
       port: proxyPort
     },
-    timeout: 2000
+    timeout: 10000
   })
   console.log(data)
 }
