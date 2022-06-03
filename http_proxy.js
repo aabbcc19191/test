@@ -28,7 +28,7 @@ while(true) {
   try {
     sendRequest()
   } catch (error) {
-    
+    console.log(error)
   }
 }
 
