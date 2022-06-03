@@ -9,12 +9,12 @@ async function getHttpProxy() {
   return data;
 }
 
-async function sendRequest() {
+async function sendRequest(i) {
   const httpProxyUrl = await getHttpProxy()
-  //console.log(i + ":" + httpProxyUrl)
+  console.log(i + ":" + httpProxyUrl)
   let proxyHost = httpProxyUrl.split(':')[0]
   let proxyPort = httpProxyUrl.split(':')[1]
-  let { data } = await axios.get("http://wap3.jfsshi.com//api/v1/group/getmsg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9/eyJnaWQiOjg5LCJ1aWQiOjU3NzIsInZhbCI6Ijk2MDlkOTBhYjg5MTRiZDAwYzMyZmU1N2IwNTgxYTBhIiwiZXh0IjoxNjU1MDMyNTkzfQ/YfX-ljpCOgTfF3py0c4fhp7AVi_1HuKhZquaLBMKfoU&type=getmsg&data=null&index=null&reverse=false&count=40&_=1654267942989", {
+  let { data } = await axios.get("http://wap3.jfsshi.com//api/v1/group/getmsg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9/eyJnaWQiOjg5LCJ1aWQiOjU3NzIsInZhbCI6Ijk2MDlkOTBhYjg5MTRiZDAwYzMyZmU1N2IwNTgxYTBhIiwiZXh0IjoxNjU1MDMyNTkzfQ/YfX-ljpCOgTfF3py0c4fhp7AVi_1HuKhZquaLBMKfoU&type=getmsg&data=null&index=null&reverse=false&count=40&_=1654267942989&page=580", {
     proxy: {
       host: proxyHost,
       port: proxyPort
@@ -24,11 +24,24 @@ async function sendRequest() {
   console.log(data)
 }
 
-while(true) {
-  try {
-    sendRequest()
-  } catch (error) {
-    console.log(error)
+// while(true) {
+//   try {
+    
+//   } catch (error) {
+//     console.log(error)
+//   }
+// }
+
+function init() {
+  for (let i = 0; i < 10; i++) {
+    try {
+      sendRequest(i)
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
+
+
+init()
 
