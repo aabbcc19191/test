@@ -11,7 +11,7 @@ async function getHttpProxy() {
 
 async function sendRequest() {
   const httpProxyUrl = await getHttpProxy()
-  console.log(i + ":" + httpProxyUrl)
+  //console.log(i + ":" + httpProxyUrl)
   let proxyHost = httpProxyUrl.split(':')[0]
   let proxyPort = httpProxyUrl.split(':')[1]
   let { data } = await axios.get("http://httpbin.org/get", {
