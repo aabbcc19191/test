@@ -14,7 +14,15 @@ async function sendRequest(i) {
   console.log(i + ":" + httpProxyUrl)
   let proxyHost = httpProxyUrl.split(':')[0]
   let proxyPort = httpProxyUrl.split(':')[1]
-  let { data } = await axios.get("http://wap3.jfsshi.com//api/v1/group/getmsg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9/eyJnaWQiOjg5LCJ1aWQiOjU3NzIsInZhbCI6Ijk2MDlkOTBhYjg5MTRiZDAwYzMyZmU1N2IwNTgxYTBhIiwiZXh0IjoxNjU1MDMyNTkzfQ/YfX-ljpCOgTfF3py0c4fhp7AVi_1HuKhZquaLBMKfoU&type=getmsg&data=null&index=null&reverse=false&count=40&_=" + new Date().getTime() + "&page=580&tt=" + Math.random() , {
+  let { data } = await axios.get("http://basett.n2.xcvbba.art/api/v1/group/getmsg?token=d6dab28e0a2a786555a0cc45fbdb31f4&type=getmsg&data=null&index=null&reverse=false&count=40&_=" + new Date().getTime() + "&page=" + Math.floor(Math.random() * 1423) + "&tt=" + Math.random() , {
+    "headers": {
+      "accept": "application/json, text/javascript, */*; q=0.01",
+      "accept-language": "zh-CN,zh;q=0.9",
+      "x-requested-with": "XMLHttpRequest",
+      "cookie": "SWOFT_SESSION_ID=te6c6lqufbsmac5kplv276qlf5",
+      "Referer": "http://basett.n2.xcvbba.art/?token=d6dab28e0a2a786555a0cc45fbdb31f4",
+      "Referrer-Policy": "strict-origin-when-cross-origin"
+    },
     proxy: {
       host: proxyHost,
       port: proxyPort
