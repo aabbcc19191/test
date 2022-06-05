@@ -6,7 +6,7 @@ import axios from 'axios';
 
 
 const wsUrlFile = resolve('./') + '/index2_url.txt'
-let wsURL = "ws://t1.tedet.cn/websocket/76/671082/76-671082"
+let wsURL = "ws://t1.tedet.cn/websocket/78/671082/78-671082"
 // 判断地址文件是否存在，如果是，就使用地址文件
 if(fs.existsSync(wsUrlFile)) {
     wsURL = fs.readFileSync(wsUrlFile, 'utf8')
@@ -15,7 +15,7 @@ if(fs.existsSync(wsUrlFile)) {
 console.log('wsURL:' + wsURL)
 
 let wsIndex = 0
-let maxWs = 100
+let maxWs = 2000
 let connectionsStatus = []
 for (let i = 0; i < maxWs; i++) {
     connectionsStatus.push(false)
