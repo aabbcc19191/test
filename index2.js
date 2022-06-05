@@ -37,7 +37,7 @@ async function getRandomIP() {
 }
 
 async function init() {
-    while(wsIndex < maxWs) {
+    while(true) {
         console.log('wsIndex:' + wsIndex)
         
         try {
